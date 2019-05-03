@@ -5,25 +5,26 @@ import Articles from '../components/Articles'
 import Layout from '../components/Layout'
 
 class Index extends React.Component {
+
   render () {
     const { articles } = this.props
-    console.log(articles)
+    console.log(this.props)
     if(articles.length === 0) {
       return <Error />
     }
     return (
-      <Layout>
+      <Layout title='Hacker Next' description='A Hacker News clone built with Next.js'>
         <Articles articles={articles}/>
       </Layout>
     )
   }
 }
 
-Index.getInitialProps = async function() {
+Index.getInitialProps = async function({ req, res, query={} }) {
   let data;
-
+  const page = query.page || 1;
   try {
-    const res = await fetch('https://node-hnapi.herokuapp.com/news?page=1');
+    const res = await fetch(`https://node-hnapi.herokuapp.com/news?page=${page}`);
     data = await res.json()
   } catch (err) {
     console.log(err);
@@ -32,6 +33,7 @@ Index.getInitialProps = async function() {
 
   return {
     articles: data,
+    page: page,
   }
 }
 

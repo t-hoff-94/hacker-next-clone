@@ -27,7 +27,7 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: inherit;
   }
   body {
-    background: '#000';
+    background: '#f9f3e5';
     font-family: 'Open Sans', sans-serif;
     padding: 0;
     margin: 0;
@@ -59,6 +59,11 @@ const GlobalStyle = createGlobalStyle`
     justify-content: center;
     max-width: 300px;
   }
+  .col-full {
+    max-width: ${theme.maxWidth};
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
 `;
 
 const StyledPage = styled.div`
@@ -67,16 +72,18 @@ const StyledPage = styled.div`
 `;
 
 const Inner = styled.main`
+  background: #f7f6ef;
   max-width: ${props => props.theme.maxWidth};
   margin: 0 auto;
   padding: 2rem;
   ${props => props.slide  && 'transform: translateX(-50%);' }
 `;
 
-const Layout = ({ children }) => (
+const Layout = ({ children, title, description }) => (
   <ThemeProvider theme={theme}>
     <StyledPage>
-    <Header />
+      <Meta title={title} description={description}/>
+      <Header title={title} />
       <Inner>
         {children}
       </Inner>
