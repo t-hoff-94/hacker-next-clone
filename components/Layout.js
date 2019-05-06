@@ -22,6 +22,7 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     font-size: 10px;
     font-family: 'radnika_next';
+    scroll-behavior: smooth;
   }
   *, *:before, *:after {
     box-sizing: inherit;
@@ -31,9 +32,10 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Open Sans', sans-serif;
     padding: 0;
     margin: 0;
-    font-size: 1.5rem;
-    line-height: 2;
+    font-size: 1.6rem;
+    line-height: 1.8;
   }
+  main {min-height: 100vh;}
   a {
     text-decoration: none;
     color: ${theme.black}
@@ -44,13 +46,13 @@ const GlobalStyle = createGlobalStyle`
     list-style-type: none;
   }
   .button {
-    background: orange;
-    border-radius: 40% 20% 40% 40% / 40% 70% 40% 60%;
-    border: 5px dotted #fff;
+    background: teal;
+    border-radius: 55px
     cursor: pointer;
-    color: #000;
+    color: #fff;
     font-size: 22px;
-    padding: .5em;
+    padding: .25rem 5rem;
+    margin: 0 10px;
     text-decoration: none;
     transition: all .5s;
     text-align: center;
@@ -82,7 +84,7 @@ const Inner = styled.main`
 const Layout = ({ children, title, description }) => (
   <ThemeProvider theme={theme}>
     <StyledPage>
-      <Meta title={title} description={description}/>
+      <Meta title={title} description={description ? description : 'Hacker News Clone'}/>
       <Header title={title} />
       <Inner>
         {children}

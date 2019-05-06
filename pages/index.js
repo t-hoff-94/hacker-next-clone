@@ -7,14 +7,14 @@ import Layout from '../components/Layout'
 class Index extends React.Component {
 
   render () {
-    const { articles } = this.props
-    console.log(this.props)
+    const { articles, page } = this.props
+
     if(articles.length === 0) {
       return <Error />
     }
     return (
       <Layout title='Hacker Next' description='A Hacker News clone built with Next.js'>
-        <Articles articles={articles}/>
+        <Articles articles={articles} page={page}/>
       </Layout>
     )
   }
